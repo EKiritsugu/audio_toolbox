@@ -59,7 +59,7 @@ def projection_back(Y, ref, clip_up=None, clip_down=None):
         c[I] *= clip_down / np.abs(c[I])
     return c
 
-def pca(X , n_src):
+def fdpca(X , n_src):
     
     # n_frames, n_freq, n_chan = X.shape
 

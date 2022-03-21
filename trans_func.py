@@ -22,12 +22,13 @@ def Mistft(Sw , fft_len= 2048  ,lap_len = 1024):
     # return: t , nch
     K = Sw.shape[2]
     ## istft
-    _ , tmp = signal.istft(Y[:,:,0], nperseg=fft_len , noverlap=lap_len)
+    _ , tmp = signal.istft(Sw[:,:,0], nperseg=fft_len , noverlap=lap_len)
     St_hat = np.zeros((len(tmp) , K))
-    St_hat[0,:] = np.real(tmp)
-    for i in range(K):
-        _ , tmp = signal.istft(Y[:,:,i], nperseg=fft_len , noverlap=lap_len)
-        St_hat[:,K] = np.real(tmp)
+    St_hat[:,0] = np.real(tmp)
+    for i in range(1,K):
+        _ , tmp = signal.istft(Sw[:,:,i], nperseg=fft_len , noverlap=lap_len)
+        St_hat[:,i] = np.real(tmp)
     return St_hat
+
 
     
